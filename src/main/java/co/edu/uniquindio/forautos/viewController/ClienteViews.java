@@ -140,12 +140,9 @@ public class ClienteViews {
     }
     private void actualizarCliente() {
         boolean clienteActualizado = false;
-        //1. Capturar los datos
         String cedulaActual = clienteDtoSeleccionado.cedula();
         ClienteDto clienteDto = construirClienteDto();
-        //2. verificar el Cliente seleccionado
         if(clienteDto != null){
-            //3. Validar la información
             if(datosValidos(clienteDto)){
                 clienteActualizado = clienteController.actualizarCliente(cedulaActual,clienteDto);
                 if(clienteActualizado){

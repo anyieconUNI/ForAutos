@@ -2,9 +2,12 @@ package co.edu.uniquindio.forautos.controller;
 
 import co.edu.uniquindio.forautos.controller.service.IModelFactoryService;
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
+import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
 import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
+import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
 import co.edu.uniquindio.forautos.mapping.mappers.ForautoMapper;
 import co.edu.uniquindio.forautos.model.Cliente;
+import co.edu.uniquindio.forautos.model.Empleado;
 import co.edu.uniquindio.forautos.model.Forautos;
 import co.edu.uniquindio.forautos.utils.ForautoUtils;
 
@@ -71,4 +74,48 @@ public class ModelFactoryController implements IModelFactoryService {
             return false;
         }
     }
+    
+    /*SE INICIA LA SECCIÓN DE LOS EMPLEADOS*/
+    public List<EmpleadoDto> obtenerEmpleados() {
+        return  mapper.getEmpleadosDto(forautos.getListaEmpleados());
+    }
+
+    @Override
+    public boolean agregarEmpleado(EmpleadoDto empleadoDto) {
+        try{
+            if(!forautos.verificarEmpleadoExistente(empleadoDto.cedula())) {
+                Empleado empleado = mapper.empleadoDtoToEmpleado(empleadoDto);
+                getForautos().agregarEmpleado(empleado);
+            }
+            return true;
+        }catch (EmpleadoException e){
+            e.getMessage();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean eliminarEmpleado(String cedula) {
+        boolean flagExiste = false;
+        try {
+            flagExiste = getForautos().eliminarEmpleado(cedula);
+        } catch (EmpleadoException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return flagExiste;
+    }
+
+    @Override
+    public boolean actualizarEmpleado(String cedulaActual, EmpleadoDto empleadoDto) {
+        try {
+            Empleado empleado = mapper.empleadoDtoToEmpleado(empleadoDto);
+            getForautos().actualizarEmpleado(cedulaActual, empleado);
+            return true;
+        } catch (EmpleadoException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
 }

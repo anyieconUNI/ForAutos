@@ -11,6 +11,7 @@ module co.forautos {
     opens co.edu.uniquindio.forautos.controller;
     opens co.edu.uniquindio.forautos.mapping.dto;
     opens co.edu.uniquindio.forautos.mapping.mappers;
+    exports co.edu.uniquindio.forautos.mapping.mappers;
     opens co.edu.uniquindio.forautos.model;
 
 }

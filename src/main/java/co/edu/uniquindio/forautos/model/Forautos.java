@@ -2,6 +2,7 @@ package co.edu.uniquindio.forautos.model;
 
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
 import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
+import co.edu.uniquindio.forautos.exceptions.RegistroException;
 import co.edu.uniquindio.forautos.model.services.IForautosService;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class Forautos implements IForautosService {
     private static final long serialVersionUID = 1L;
     ArrayList<Cliente> listaClientes = new ArrayList<>();
     ArrayList<Empleado> listaEmpleados = new ArrayList<>();
-
+    ArrayList<Admin> listaAdmins = new ArrayList<>();
     public Forautos(){
 
     }
@@ -20,6 +21,9 @@ public class Forautos implements IForautosService {
     }
     public ArrayList<Empleado> getListaEmpleados() {
         return listaEmpleados;
+    }
+    public ArrayList<Admin> getListaAdmins() {
+        return listaAdmins;
     }
     public void agregarCliente(Cliente nuevoCliente) throws ClienteException{
         getListaClientes().add(nuevoCliente);
@@ -165,5 +169,35 @@ public class Forautos implements IForautosService {
         }
         return empleadoEncontrado;
     }
+    /*Se inicia Registro de Admins*/
+    public void agregarRegistrosAdmin(Admin nuevoAdmin) throws RegistroException{
+        getListaAdmins().add(nuevoAdmin);
+    }
+    @Override
+    public boolean verificarRegistroExistente(String cedula) throws RegistroException {
+        if(registroExiste(cedula)){
+            throw new RegistroException("El empleado con cedula: "+cedula+" ya existe");
+        }else{
+            return false;
+        }
+    }
+    public boolean registroExiste(String cedula) {
+        boolean registroEncontrado = false;
+        for (Admin admin : getListaAdmins()) {
+            if(admin.getCedula().equalsIgnoreCase(cedula)){
+                registroEncontrado = true;
+                break;
+            }
+        }
+        return registroEncontrado;
+    }
 
+    public Admin buscarAdminEmail(String email) {
+        for (Admin admin : getListaAdmins()) {
+            if (admin.getEmail().equalsIgnoreCase(email)) {
+                return admin;
+            }
+        }
+        return null;
+    }
 }

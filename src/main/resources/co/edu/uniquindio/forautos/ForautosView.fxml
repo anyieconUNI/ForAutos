@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="624.0" prefWidth="702.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="co.edu.uniquindio.forautos.viewController.ForautoViewController">
+<AnchorPane prefHeight="624.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.forautos.viewController.ForautoViewController">
     <children>
         <TabPane layoutY="-4.0" prefHeight="639.0" prefWidth="701.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Cliente">
+                <Tab text="Admin">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="702.0">
                             <children>
@@ -31,6 +29,36 @@
                                 <SplitPane layoutX="-15.0" layoutY="7.0" orientation="VERTICAL" prefHeight="574.0" prefWidth="702.0">
                                     <items>
                                         <fx:include source="EmpleadoViews.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+            <tabs>
+                <Tab text="Registro">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="702.0">
+                            <children>
+                                <SplitPane layoutX="151.0" layoutY="42.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="400.0">
+                                    <items>
+                                        <fx:include source="Registro.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+            <tabs>
+                <Tab text="Incio">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="702.0">
+                            <children>
+                                <SplitPane layoutX="151.0" layoutY="42.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="400.0">
+                                    <items>
+                                        <fx:include source="Login.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>

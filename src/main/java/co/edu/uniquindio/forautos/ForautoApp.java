@@ -2,6 +2,7 @@ package co.edu.uniquindio.forautos;
 
 import co.edu.uniquindio.forautos.viewController.ClienteViews;  // Asegúrate de importar el controlador correcto
 import co.edu.uniquindio.forautos.viewController.ForautoViewController;
+import co.edu.uniquindio.forautos.viewController.HomeViewsController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,11 +26,9 @@ public class ForautoApp extends Application {
     public void mostrarVentanaPrincipal() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ForautoApp.class.getResource("ForautosView.fxml"));
+            loader.setLocation(ForautoApp.class.getResource("Home.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
-            ForautoViewController clienteViewController = loader.getController();  // Usa el controlador correcto
-            // clienteViewController.setAplicacion(this);  // Si necesitas pasar la aplicación al controlador
-
+            HomeViewsController clienteViewController = loader.getController();
             // Mostrar la escena que contiene el layout principal.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);

@@ -2,6 +2,7 @@ package co.edu.uniquindio.forautos.model.services;
 
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
 import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
+import co.edu.uniquindio.forautos.exceptions.RegistroException;
 import co.edu.uniquindio.forautos.model.Cliente;
 import co.edu.uniquindio.forautos.model.Empleado;
 
@@ -28,4 +29,6 @@ public interface IForautosService {
     Empleado obtenerEmpleado(String cedula);
 
     ArrayList<Empleado> obtenerEmpleados();
+
+    boolean verificarRegistroExistente(String cedula) throws RegistroException;
 }

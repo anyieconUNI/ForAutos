@@ -3,9 +3,14 @@ package co.edu.uniquindio.forautos.controller;
 import co.edu.uniquindio.forautos.controller.service.IModelFactoryService;
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
 import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
+import co.edu.uniquindio.forautos.exceptions.LoginException;
+import co.edu.uniquindio.forautos.exceptions.RegistroException;
 import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
 import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
+import co.edu.uniquindio.forautos.mapping.dto.LoginDto;
+import co.edu.uniquindio.forautos.mapping.dto.RegistroDto;
 import co.edu.uniquindio.forautos.mapping.mappers.ForautoMapper;
+import co.edu.uniquindio.forautos.model.Admin;
 import co.edu.uniquindio.forautos.model.Cliente;
 import co.edu.uniquindio.forautos.model.Empleado;
 import co.edu.uniquindio.forautos.model.Forautos;
@@ -117,5 +122,27 @@ public class ModelFactoryController implements IModelFactoryService {
             return false;
         }
     }
-    
+    /*SE INICIA EL PRECESO DE ADMIN*/
+    @Override
+    public boolean agregarRegistroAdmin(RegistroDto registroDto) {
+        try {
+            if (!forautos.verificarRegistroExistente(registroDto.cedula())) {
+                Admin admin = mapper.RegistroDtoToAdmin(registroDto);
+                getForautos().agregarRegistrosAdmin(admin);
+            }
+            return true;
+        } catch (RegistroException e) {
+            e.getMessage();
+            return false;
+        }
+    }
+    @Override
+    public Admin iniciarSesion(LoginDto loginDto) throws LoginException {
+        Admin admin = getForautos().buscarAdminEmail(loginDto.email());
+        if (admin != null && admin.getContrasena().equals(loginDto.contrasena())) {
+            return admin;
+        } else {
+            throw new LoginException("Email o contraseña incorrecta");
+        }
+    }
 }

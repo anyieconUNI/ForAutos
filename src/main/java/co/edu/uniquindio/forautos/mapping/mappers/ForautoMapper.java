@@ -2,6 +2,8 @@ package co.edu.uniquindio.forautos.mapping.mappers;
 
 import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
 import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
+import co.edu.uniquindio.forautos.mapping.dto.RegistroDto;
+import co.edu.uniquindio.forautos.model.Admin;
 import co.edu.uniquindio.forautos.model.Cliente;
 import co.edu.uniquindio.forautos.model.Empleado;
 import org.mapstruct.IterableMapping;
@@ -33,6 +35,14 @@ public interface ForautoMapper {
 
     @IterableMapping(qualifiedByName = "empleadoToEmpleadoDto")
     List<EmpleadoDto> getEmpleadosDto(List<Empleado> listaEmpleados);
+
+    @Named("RegistroToRegistroDto")
+    RegistroDto RegistroToRegistroDto(Admin admin);
+
+    Admin RegistroDtoToAdmin(RegistroDto registroDto);
+
+    @IterableMapping(qualifiedByName = "RegistroToRegistroDto")
+    List<RegistroDto> getRegistrosDto(List<Admin> listaRegistros);
 
 
 }

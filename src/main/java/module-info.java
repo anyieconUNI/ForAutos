@@ -2,6 +2,7 @@ module co.forautos {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.mapstruct;
+    requires static lombok;
 
 
     opens co.edu.uniquindio.forautos to javafx.fxml;

@@ -7,6 +7,7 @@ import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
 import co.edu.uniquindio.forautos.mapping.dto.LoginDto;
 import co.edu.uniquindio.forautos.mapping.dto.RegistroDto;
 import co.edu.uniquindio.forautos.model.Admin;
+import javafx.scene.control.Alert;
 
 import java.util.List;
 
@@ -29,4 +30,7 @@ public interface IModelFactoryService {
     boolean agregarRegistroAdmin(RegistroDto registroDto);
 
     Admin iniciarSesion(LoginDto loginDto) throws LoginException;
+
+    void mostrarMensaje(String titulo, String mensaje, Alert.AlertType tipo);
+
 }

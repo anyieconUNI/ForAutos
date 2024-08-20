@@ -35,13 +35,13 @@ public class RegistroViewsController {
         RegistroDto registroDto1 = contruirRegistroAdmin();
         if(datosValidos(registroDto1)){
             if(registroController.agregarRegistro(registroDto1)){
-                mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", AlertType.INFORMATION);
+                registroController.mostrarMensaje("El empleado se ha creado con éxito", "Notificación empleado", AlertType.INFORMATION);
                 limpiarCamposEmpleado();
             }else{
-                mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", AlertType.ERROR);
+                registroController.mostrarMensaje( "El empleado no se ha creado con éxito", "Notificación empleado", AlertType.ERROR);
             }
         }else{
-            mostrarMensaje("Notificación empleado", "Empleado no creado", "Los datos ingresados son invalidos", AlertType.ERROR);
+            registroController.mostrarMensaje("Los datos ingresados son invalidos", "Empleado no creado", AlertType.ERROR);
         }
     }
 
@@ -70,17 +70,9 @@ public class RegistroViewsController {
         if(mensaje.equals("")){
             return true;
         }else{
-            mostrarMensaje("Notificación cliente","Datos invalidos",mensaje, AlertType.WARNING);
+            registroController.mostrarMensaje("Notificación cliente", mensaje, AlertType.WARNING);
             return false;
         }
     }
-    private void mostrarMensaje(String titulo, String header, String contenido, AlertType alertType) {
-        Alert aler = new Alert(alertType);
-        aler.setTitle(titulo);
-        aler.setHeaderText(header);
-        aler.setContentText(contenido);
-        aler.showAndWait();
-    }
-
 
 }

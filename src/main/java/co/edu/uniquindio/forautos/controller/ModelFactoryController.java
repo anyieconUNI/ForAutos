@@ -1,5 +1,6 @@
 package co.edu.uniquindio.forautos.controller;
 
+import co.edu.uniquindio.forautos.ForautoApp;
 import co.edu.uniquindio.forautos.controller.service.IModelFactoryService;
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
 import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
@@ -15,6 +16,11 @@ import co.edu.uniquindio.forautos.model.Cliente;
 import co.edu.uniquindio.forautos.model.Empleado;
 import co.edu.uniquindio.forautos.model.Forautos;
 import co.edu.uniquindio.forautos.utils.ForautoUtils;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -144,5 +150,40 @@ public class ModelFactoryController implements IModelFactoryService {
         } else {
             throw new LoginException("Email o contraseña incorrecta");
         }
+    }
+
+    public FXMLLoader navegarVentana(String nombreArchivoFxml, String tituloVentana) {
+        try {
+
+            // Cargar la vista
+            FXMLLoader loader = new FXMLLoader( ForautoApp.class.getResource(nombreArchivoFxml));
+            Parent root = loader.load();
+
+            // Crear la escena
+            Scene scene = new Scene(root);
+
+            // Crear un nuevo escenario (ventana)
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle(tituloVentana);
+
+            // Mostrar la nueva ventana
+            stage.show();
+            return loader;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarMensaje("Error al cargar la ventana", "No se pudo cargar " + nombreArchivoFxml, Alert.AlertType.ERROR);
+        }
+        return null;
+    }
+
+    @Override
+    public void mostrarMensaje(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

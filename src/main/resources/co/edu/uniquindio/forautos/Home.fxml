@@ -19,7 +19,7 @@
            <Image url="@img/logo.png" />
        </image>
       </ImageView>
-      <Button layoutX="46.0" layoutY="166.0" mnemonicParsing="false" style="-fx-background-color: #ff6a6a;" text="Iniciar Sesión" onAction="#iniciarSesi" textFill="WHITE">
+      <Button layoutX="46.0" layoutY="166.0" mnemonicParsing="false" style="-fx-background-color: #ff6a6a;" text="Iniciar Sesión" onAction="#iniciarSesion" textFill="WHITE">
          <font>
             <Font name="Candara" size="14.0" />
          </font>

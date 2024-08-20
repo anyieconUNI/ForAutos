@@ -28,7 +28,7 @@
                         <Font name="Candara" size="14.0" />
                      </font></Label>
                         <TextField fx:id="txtNombre" layoutX="101.0" layoutY="77.0" prefHeight="25.0" prefWidth="251.0" style="-fx-border-color: #21b1b1;" />
-                        <TextField fx:id="txtApellido" layoutX="430.0" layoutY="77.0" prefHeight="25.0" prefWidth="251.0" style="-fx-border-color: #21b1b1};" />
+                        <TextField fx:id="txtApellido" layoutX="430.0" layoutY="77.0" prefHeight="25.0" prefWidth="251.0" style="-fx-border-color: #21b1b1;" />
                         <TextField fx:id="txtCedula" layoutX="101.0" layoutY="130.0" prefHeight="25.0" prefWidth="251.0" style="-fx-border-color: #21b1b1;" />
                         <TextField fx:id="txtTelefono" layoutX="430.0" layoutY="130.0" prefHeight="25.0" prefWidth="251.0" style="-fx-border-color: #21b1b1;" />
                         <Button fx:id="btnActualizar" layoutX="308.0" layoutY="202.0" mnemonicParsing="false" onAction="#actualizarClienteAction" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: #21b1b1;" text="Actualizar" textFill="WHITE">

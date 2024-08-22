@@ -5,4 +5,8 @@ public record EmpleadoDto(
         String apellido,
         String cedula,
         String telefono) {
+
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
+    }
 }

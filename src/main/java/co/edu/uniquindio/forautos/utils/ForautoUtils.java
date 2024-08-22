@@ -2,6 +2,7 @@ package co.edu.uniquindio.forautos.utils;
 
 import co.edu.uniquindio.forautos.model.Admin;
 import co.edu.uniquindio.forautos.model.Cliente;
+import co.edu.uniquindio.forautos.model.Empleado;
 import co.edu.uniquindio.forautos.model.Forautos;
 
 public class ForautoUtils {
@@ -21,8 +22,15 @@ public class ForautoUtils {
         admin.setTelefono("1");
         admin.setContrasena("1");
 
+        Empleado empleado = new Empleado();
+        empleado.setNombre("HOLA");
+        empleado.setApellido("JOOO");
+        empleado.setCedula("1111");
+        empleado.setTelefono("111111");
+
         forautos.getListaClientes().add(cliente);
         forautos.getListaAdmins().add(admin);
+        forautos.getListaEmpleados().add(empleado);
         System.out.println("Información creada");
         return forautos;
 

@@ -43,7 +43,7 @@
             <Font name="Candara" size="14.0" />
          </font>
       </Label>
-      <ComboBox layoutX="358.0" layoutY="158.0" prefWidth="150.0" style="-fx-border-color: #21b1b1; -fx-background-color: #ffffff;" />
+      <ComboBox fx:id="cbTecnicos" layoutX="358.0" layoutY="158.0" prefWidth="150.0" style="-fx-border-color: #21b1b1; -fx-background-color: #ffffff;" />
       <Label layoutX="306.0" layoutY="162.0" text="Técnico:">
          <font>
             <Font name="Candara" size="14.0" />

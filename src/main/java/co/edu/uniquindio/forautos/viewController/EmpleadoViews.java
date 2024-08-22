@@ -1,5 +1,6 @@
 package co.edu.uniquindio.forautos.viewController;
 
+import co.edu.uniquindio.forautos.controller.CitaController;
 import co.edu.uniquindio.forautos.controller.EmpleadoController;
 import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 public class EmpleadoViews {
     EmpleadoController empleadoController;
+    CitaViewController citaController = new CitaViewController();
     ObservableList<EmpleadoDto> listaEmpleadosDto = FXCollections.observableArrayList();
     EmpleadoDto empleadoSeleccionado;
     @FXML
@@ -37,6 +39,7 @@ public class EmpleadoViews {
     private TableColumn<EmpleadoDto, String> tcCedula;
     @FXML
     private TableColumn<EmpleadoDto, String> tcTelefono;
+
     
     @FXML
     void initialize() {
@@ -61,6 +64,7 @@ public class EmpleadoViews {
 
     private void obtenerEmpleados() {
         listaEmpleadosDto.addAll(empleadoController.obtenerEmpleados());
+
     }
 
     private void listenerSelection() {
@@ -112,6 +116,8 @@ public class EmpleadoViews {
                 listaEmpleadosDto.add(empleadoDto);
                 mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
                 limpiarCamposEmpleado();
+//                citaController.obtenerEmpleados();
+
             }else{
                 mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
             }

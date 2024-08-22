@@ -37,34 +37,6 @@
                 </Tab>
             </tabs>
             <tabs>
-                <Tab text="Registro">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="702.0">
-                            <children>
-                                <SplitPane layoutX="151.0" layoutY="42.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="400.0">
-                                    <items>
-                                        <fx:include source="Registro.fxml" />
-                                    </items>
-                                </SplitPane>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-            <tabs>
-                <Tab text="Incio">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="702.0">
-                            <children>
-                                <SplitPane layoutX="151.0" layoutY="42.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="400.0">
-                                    <items>
-                                        <fx:include source="Login.fxml" />
-                                    </items>
-                                </SplitPane>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
             </tabs>
         </TabPane>
     </children>

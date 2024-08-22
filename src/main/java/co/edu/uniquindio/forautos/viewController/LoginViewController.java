@@ -1,6 +1,8 @@
 package co.edu.uniquindio.forautos.viewController;
 
 import co.edu.uniquindio.forautos.controller.LoginController;
+import co.edu.uniquindio.forautos.controller.ModelFactoryController;
+import co.edu.uniquindio.forautos.controller.service.ILoginControllerService;
 import co.edu.uniquindio.forautos.exceptions.LoginException;
 import co.edu.uniquindio.forautos.mapping.dto.LoginDto;
 import co.edu.uniquindio.forautos.model.Admin;
@@ -11,13 +13,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LoginViewController {
+public class LoginViewController implements ILoginControllerService {
+
+    private final ModelFactoryController modelFactoryController;
+    public LoginViewController(){
+        this.modelFactoryController = ModelFactoryController.getInstance();
+    }
     LoginController loginController;
     @FXML
     public TextField txtCorreo;
     @FXML
     public PasswordField txtPassword;
-
     @FXML
     public void initialize() {
         loginController = new LoginController();
@@ -34,7 +40,9 @@ public class LoginViewController {
             try {
                 Admin admin = loginController.incioAdmin(loginDto);
                 mostrarMensaje("Inicio de sesión", "Inicio de sesión exitoso", "Bienvenido, " + admin.getNombre(), AlertType.INFORMATION);
-                // Aquí puedes redirigir al usuario a otra pantalla o realizar acciones adicionales
+                if (admin != null) {
+                    ModelFactoryController.getInstance().navegarVentana("ForautosView.fxml","ForAutos");
+                }
             } catch (LoginException e) {
                 mostrarMensaje("Inicio de sesión", "Error de inicio de sesión", e.getMessage(), Alert.AlertType.ERROR);
             }
@@ -65,4 +73,8 @@ public class LoginViewController {
         alert.showAndWait();
     }
 
+    @Override
+    public Admin incioAdmin(LoginDto loginDto) throws LoginException {
+        return null;
+    }
 }

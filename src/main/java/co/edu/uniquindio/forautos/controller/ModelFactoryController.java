@@ -22,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 public class ModelFactoryController implements IModelFactoryService {
@@ -153,16 +155,21 @@ public class ModelFactoryController implements IModelFactoryService {
     }
 
     public FXMLLoader navegarVentana(String nombreArchivoFxml, String tituloVentana) {
+        FXMLLoader loader = null;
         try {
+            // Intentar obtener la ubicación del archivo FXML
+            URL fxmlLocation = ForautoApp.class.getResource(nombreArchivoFxml);
 
-            // Cargar la vista
-            FXMLLoader loader = new FXMLLoader( ForautoApp.class.getResource(nombreArchivoFxml));
+            if (fxmlLocation == null) {
+                throw new IOException("No se pudo localizar el archivo FXML: " + nombreArchivoFxml);
+            }
+
+            // Cargar la vista utilizando FXMLLoader
+            loader = new FXMLLoader(fxmlLocation);
             Parent root = loader.load();
 
-            // Crear la escena
+            // Configurar la escena y la ventana
             Scene scene = new Scene(root);
-
-            // Crear un nuevo escenario (ventana)
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setResizable(false);
@@ -170,14 +177,16 @@ public class ModelFactoryController implements IModelFactoryService {
 
             // Mostrar la nueva ventana
             stage.show();
-            return loader;
-
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje("Error al cargar la ventana", "No se pudo cargar " + nombreArchivoFxml + ": " + e.getMessage(), Alert.AlertType.ERROR);
         } catch (Exception e) {
             e.printStackTrace();
-            mostrarMensaje("Error al cargar la ventana", "No se pudo cargar " + nombreArchivoFxml, Alert.AlertType.ERROR);
+            mostrarMensaje("Error inesperado", "Ocurrió un error al cargar la ventana: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-        return null;
+        return loader;
     }
+
 
     @Override
     public void mostrarMensaje(String titulo, String mensaje, Alert.AlertType tipo) {

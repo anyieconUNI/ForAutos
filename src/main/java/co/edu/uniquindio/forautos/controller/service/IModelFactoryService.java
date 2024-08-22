@@ -26,11 +26,12 @@ public interface IModelFactoryService {
 
     boolean actualizarEmpleado(String cedulaActual, EmpleadoDto empleadoDto);
 
-    /*SE INICIA EL PRECESO DE ADMIN*/
+    /*SE INICIA EL PROCESO DE ADMIN*/
     boolean agregarRegistroAdmin(RegistroDto registroDto);
 
     Admin iniciarSesion(LoginDto loginDto) throws LoginException;
 
     void mostrarMensaje(String titulo, String mensaje, Alert.AlertType tipo);
+
 
 }

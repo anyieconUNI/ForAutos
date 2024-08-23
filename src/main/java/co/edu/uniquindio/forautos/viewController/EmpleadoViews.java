@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class EmpleadoViews {
     EmpleadoController empleadoController;
-    CitaViewController citaController = new CitaViewController();
+    CitaController citaController = new CitaController();
     ObservableList<EmpleadoDto> listaEmpleadosDto = FXCollections.observableArrayList();
     EmpleadoDto empleadoSeleccionado;
     @FXML
@@ -40,7 +40,7 @@ public class EmpleadoViews {
     @FXML
     private TableColumn<EmpleadoDto, String> tcTelefono;
 
-    
+
     @FXML
     void initialize() {
         empleadoController = new EmpleadoController();
@@ -116,7 +116,7 @@ public class EmpleadoViews {
                 listaEmpleadosDto.add(empleadoDto);
                 mostrarMensaje("Notificación empleado", "Empleado creado", "El empleado se ha creado con éxito", Alert.AlertType.INFORMATION);
                 limpiarCamposEmpleado();
-//                citaController.obtenerEmpleados();
+                citaController.obtenerEmpleados();
 
             }else{
                 mostrarMensaje("Notificación empleado", "Empleado no creado", "El empleado no se ha creado con éxito", Alert.AlertType.ERROR);
@@ -137,6 +137,7 @@ public class EmpleadoViews {
                     empleadoSeleccionado = null;
                     tableEmpleado.getSelectionModel().clearSelection();
                     limpiarCamposEmpleado();
+                    citaController.obtenerEmpleados();
                     mostrarMensaje("Notificación empleado", "Empleado eliminado", "El empleado se ha eliminado con éxito", Alert.AlertType.INFORMATION);
                 }else{
                     mostrarMensaje("Notificación empleado", "Empleado no eliminado", "El empleado no se puede eliminar", Alert.AlertType.ERROR);

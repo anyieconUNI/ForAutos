@@ -1,5 +1,6 @@
 package co.edu.uniquindio.forautos.viewController;
 
+import co.edu.uniquindio.forautos.controller.CitaController;
 import co.edu.uniquindio.forautos.controller.ClienteController;
 import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class ClienteViews {
     ClienteController clienteController;
     ObservableList<ClienteDto> listaClientesDto = FXCollections.observableArrayList();
+    CitaController citaController = new CitaController();
 
     ClienteDto clienteDtoSeleccionado;
     @FXML
@@ -89,6 +91,7 @@ public class ClienteViews {
                 listaClientesDto.add(clienteDto);
                 mostrarMensaje("Notificación Cliente", "Cliente creado", "El Cliente se ha creado con éxito", Alert.AlertType.INFORMATION);
                 limpiarCamposCliente();
+                citaController.obtenerClientes();
             }else{
                 mostrarMensaje("Notificación Cliente", "Cliente no creado", "El Cliente no se ha creado con éxito", Alert.AlertType.ERROR);
             }

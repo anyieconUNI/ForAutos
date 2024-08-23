@@ -18,7 +18,7 @@
       <ComboBox layoutX="358.0" layoutY="76.0" prefWidth="150.0" style="-fx-border-color: #21b1b1; -fx-background-color: #ffffff;" />
       <ComboBox layoutX="358.0" layoutY="117.0" prefWidth="150.0" style="-fx-border-color: #21b1b1; -fx-background-color: #ffffff;" />
       <DatePicker layoutX="103.0" layoutY="117.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #21b1b1;" />
-      <TextField layoutX="102.0" layoutY="76.0" style="-fx-border-color: #21b1b1;" />
+      <ComboBox fx:id="cbClientes" layoutX="102.0" layoutY="76.0" style="-fx-border-color: #21b1b1;" />
       <Spinner layoutX="103.0" layoutY="158.0" style="-fx-border-color: #21b1b1;" />
       <Label layoutX="323.0" layoutY="80.0" text="Tipo:">
          <font>

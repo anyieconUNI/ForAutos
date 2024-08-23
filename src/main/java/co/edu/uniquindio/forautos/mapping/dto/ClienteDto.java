@@ -6,4 +6,7 @@ public record ClienteDto(
         String cedula,
         String telefono
 ) {
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
+    }
 }

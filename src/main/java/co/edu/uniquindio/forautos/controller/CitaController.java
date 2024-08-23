@@ -32,5 +32,9 @@ public class CitaController implements ICitaControllerService {
     public void llenarServicios() {
         CitaViewController.getInstance().llenarServicios();
     }
+    @Override
+    public void llenarCiudades(){
+        CitaViewController.getInstance().llenarCiudades();
+    }
 
 }

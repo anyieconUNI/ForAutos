@@ -3,6 +3,7 @@ package co.edu.uniquindio.forautos.viewController;
 import co.edu.uniquindio.forautos.controller.ClienteController;
 import co.edu.uniquindio.forautos.controller.EmpleadoController;
 import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
+import co.edu.uniquindio.forautos.model.Ciudad;
 import co.edu.uniquindio.forautos.model.Servicio;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -19,6 +20,8 @@ public class CitaViewController {
     public ComboBox<Servicio> cbServicio;
     @FXML
     public ComboBox<String> cbTecnicos;
+    @FXML
+    public ComboBox<Ciudad> cbCiudad;
 
     private static CitaViewController instance;
     public ComboBox<String> cbClientes;
@@ -41,6 +44,7 @@ public class CitaViewController {
         actualizarComboBoxTecnicos();
         actualizarClientes();
         llenarServicios();
+        llenarCiudades();
     }
 
     public void actualizarComboBoxTecnicos() {
@@ -72,6 +76,24 @@ public class CitaViewController {
                 }
                 @Override
                 public Servicio fromString(String string) {
+                    return null;
+                }
+            });
+        }
+    }
+    public void llenarCiudades() {
+        if (cbCiudad != null) {
+            cbCiudad.getItems().addAll(Ciudad.values());
+
+            // Opcional: Configura un StringConverter si necesitas un formato especial
+            cbCiudad.setConverter(new StringConverter<Ciudad>() {
+                @Override
+                public String toString(Ciudad ciudad) {
+                    return ciudad != null ? ciudad.name() : "";
+                }
+
+                @Override
+                public Ciudad fromString(String string) {
                     return null;
                 }
             });

@@ -11,4 +11,5 @@ public interface ICitaControllerService {
 
     List<ClienteDto> obtenerClientes();
     void llenarServicios();
+    void llenarCiudades();
 }

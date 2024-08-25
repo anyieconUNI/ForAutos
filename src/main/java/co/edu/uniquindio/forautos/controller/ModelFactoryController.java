@@ -2,19 +2,10 @@ package co.edu.uniquindio.forautos.controller;
 
 import co.edu.uniquindio.forautos.ForautoApp;
 import co.edu.uniquindio.forautos.controller.service.IModelFactoryService;
-import co.edu.uniquindio.forautos.exceptions.ClienteException;
-import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
-import co.edu.uniquindio.forautos.exceptions.LoginException;
-import co.edu.uniquindio.forautos.exceptions.RegistroException;
-import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
-import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
-import co.edu.uniquindio.forautos.mapping.dto.LoginDto;
-import co.edu.uniquindio.forautos.mapping.dto.RegistroDto;
+import co.edu.uniquindio.forautos.exceptions.*;
+import co.edu.uniquindio.forautos.mapping.dto.*;
 import co.edu.uniquindio.forautos.mapping.mappers.ForautoMapper;
-import co.edu.uniquindio.forautos.model.Admin;
-import co.edu.uniquindio.forautos.model.Cliente;
-import co.edu.uniquindio.forautos.model.Empleado;
-import co.edu.uniquindio.forautos.model.Forautos;
+import co.edu.uniquindio.forautos.model.*;
 import co.edu.uniquindio.forautos.utils.ForautoUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -195,4 +186,47 @@ public class ModelFactoryController implements IModelFactoryService {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    /*Se inicia la cita*/
+    @Override
+    public List<CitaDto> cargarCitas() {
+        return  mapper.getCitaDto(forautos.getListaCitas());
+    }
+    @Override
+    public boolean agregarCitas(CitaDto citaDto) {
+        try {
+            Cita cita = mapper.citaDtoToCita(citaDto);
+            cita.generarId();
+            getForautos().agregarCita(cita);
+            return true;
+        } catch (CitaException e) {
+            System.err.println("Error al agregar cita: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean actualizarCita(CitaDto citaDto) {
+        try {
+            Cita cita = mapper.citaDtoToCita(citaDto);
+            getForautos().actualizarCita(cita);
+            return true;
+        } catch (CitaException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean eliminarCita(String id) {
+        boolean flagExiste = false;
+        try {
+            flagExiste = getForautos().eliminarCita(id);
+        } catch (CitaException e) {
+            e.printStackTrace();
+        }
+        return flagExiste;
+    }
+
 }

@@ -163,11 +163,8 @@ public class ClienteViews {
 
         }
     }
-    public void nuevoClienteAction(ActionEvent actionEvent) {
-        txtNombre.setText("Ingrese el nombre");
-        txtApellido.setText("Ingrese el apellido");
-        txtCedula.setText("Ingrese la cedula");
-        txtTelefono.setText("Ingrese el telefono");
+    public void limpiarClienteAction(ActionEvent actionEvent) {
+        limpiarCamposCliente();
     }
 
     public void eliminarClienteAction(ActionEvent actionEvent) {

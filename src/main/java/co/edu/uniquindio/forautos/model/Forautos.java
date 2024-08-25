@@ -1,17 +1,20 @@
 package co.edu.uniquindio.forautos.model;
 
+import co.edu.uniquindio.forautos.exceptions.CitaException;
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
 import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
 import co.edu.uniquindio.forautos.exceptions.RegistroException;
 import co.edu.uniquindio.forautos.model.services.IForautosService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Forautos implements IForautosService {
-    private static final long serialVersionUID = 1L;
+
     ArrayList<Cliente> listaClientes = new ArrayList<>();
     ArrayList<Empleado> listaEmpleados = new ArrayList<>();
     ArrayList<Admin> listaAdmins = new ArrayList<>();
+    ArrayList<Cita> listaCitas = new ArrayList<>();
     public Forautos(){
 
     }
@@ -21,6 +24,9 @@ public class Forautos implements IForautosService {
     }
     public ArrayList<Empleado> getListaEmpleados() {
         return listaEmpleados;
+    }
+    public ArrayList<Cita> getListaCita(){
+        return listaCitas;
     }
     public ArrayList<Admin> getListaAdmins() {
         return listaAdmins;
@@ -181,6 +187,7 @@ public class Forautos implements IForautosService {
             return false;
         }
     }
+
     public boolean registroExiste(String cedula) {
         boolean registroEncontrado = false;
         for (Admin admin : getListaAdmins()) {
@@ -199,5 +206,73 @@ public class Forautos implements IForautosService {
             }
         }
         return null;
+    }
+
+    /*Se inicia la cita*/
+    public ArrayList<Cita> getListaCitas() {
+        return listaCitas;
+    }
+
+    public boolean agregarCita(Cita nuevoCita) throws CitaException {
+        getListaCita().add(nuevoCita);
+        System.out.println("ID de la cita agregada : " + nuevoCita.getId());
+        return false;
+    }
+    @Override
+    public Cita crearCita(List<Cliente> clientes, Servicio servicio, String fecha, String hora, Ciudad ciudad, List<Empleado> empleados) throws CitaException{
+        Cita nuevaCita = null;
+        nuevaCita = new Cita();
+        nuevaCita.setId(nuevaCita.generarId());
+        nuevaCita.setClientes((Cliente) clientes);
+        nuevaCita.setServicio(servicio);
+        nuevaCita.setFecha(fecha);
+        nuevaCita.setHora(hora);
+        nuevaCita.setCiudad(ciudad);
+        nuevaCita.setEmpleados((Empleado) empleados);
+        getListaCita().add(nuevaCita);
+        return nuevaCita;
+    }
+    @Override
+    public boolean actualizarCita(Cita citaActualizada) throws CitaException {
+        Cita citaExistente = obtenerCitaPorId(citaActualizada.getId());
+        System.out.println("ID de la cita a actualizar: " + citaActualizada.getId());
+        if (citaExistente != null) {
+            citaExistente.setClientes(citaActualizada.getClientes());
+            citaExistente.setServicio(citaActualizada.getServicio());
+            citaExistente.setFecha(citaActualizada.getFecha());
+            citaExistente.setHora(citaActualizada.getHora());
+            citaExistente.setCiudad(citaActualizada.getCiudad());
+            citaExistente.setEmpleados(citaActualizada.getEmpleados());
+            return true;
+        } else {
+            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            return false;
+        }
+    }
+
+
+    public Cita obtenerCitaPorId(String id) {
+        for (Cita cita : getListaCitas()) {
+            // Verifica que el ID no sea nulo antes de compararlo
+            if (cita.getId() != null && cita.getId().equals(id)) {
+                System.out.println("Cita encontrada: " + cita);
+                return cita;
+            }
+        }
+        System.out.println("No se encontró ninguna cita con el ID dado.");
+        return null;
+    }
+
+    @Override
+    public boolean eliminarCita(String id) throws CitaException {
+        Cita citaExistente = obtenerCitaPorId(id);
+        if (citaExistente != null) {
+            getListaCitas().remove(citaExistente);
+            System.out.println("Cita con ID " + id + " eliminada.");
+            return true;
+        } else {
+            System.out.println("No se pudo encontrar la cita con ID " + id + " para eliminar.");
+            return false;
+        }
     }
 }

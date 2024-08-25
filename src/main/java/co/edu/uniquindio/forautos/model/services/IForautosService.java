@@ -1,12 +1,15 @@
 package co.edu.uniquindio.forautos.model.services;
 
+import co.edu.uniquindio.forautos.exceptions.CitaException;
 import co.edu.uniquindio.forautos.exceptions.ClienteException;
 import co.edu.uniquindio.forautos.exceptions.EmpleadoException;
 import co.edu.uniquindio.forautos.exceptions.RegistroException;
-import co.edu.uniquindio.forautos.model.Cliente;
-import co.edu.uniquindio.forautos.model.Empleado;
+import co.edu.uniquindio.forautos.mapping.dto.CitaDto;
+import co.edu.uniquindio.forautos.model.*;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public interface IForautosService {
     boolean verificarClienteExistente(String cedula) throws  ClienteException;
@@ -31,4 +34,10 @@ public interface IForautosService {
     ArrayList<Empleado> obtenerEmpleados();
 
     boolean verificarRegistroExistente(String cedula) throws RegistroException;
+
+    Cita crearCita(List<Cliente> clientes, Servicio servicio, String fecha, String hora, Ciudad ciudad, List<Empleado> empleados) throws CitaException;
+
+    boolean actualizarCita(Cita citaActualizada)throws CitaException ;
+
+    boolean eliminarCita(String id) throws CitaException;
 }

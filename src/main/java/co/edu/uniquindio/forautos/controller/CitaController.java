@@ -1,9 +1,9 @@
 package co.edu.uniquindio.forautos.controller;
 
 import co.edu.uniquindio.forautos.controller.service.ICitaControllerService;
+import co.edu.uniquindio.forautos.mapping.dto.CitaDto;
 import co.edu.uniquindio.forautos.mapping.dto.ClienteDto;
 import co.edu.uniquindio.forautos.mapping.dto.EmpleadoDto;
-import co.edu.uniquindio.forautos.model.Servicio;
 import co.edu.uniquindio.forautos.viewController.CitaViewController;
 
 import java.util.List;
@@ -12,6 +12,10 @@ import java.util.List;
 public class CitaController implements ICitaControllerService {
     EmpleadoController empleadoController = new EmpleadoController();
     ClienteController clienteController = new ClienteController();
+    ModelFactoryController modelFactoryController;
+    public CitaController(){
+        modelFactoryController = ModelFactoryController.getInstance();
+    }
 
     @Override
     public List<EmpleadoDto> obtenerEmpleados() {
@@ -37,4 +41,20 @@ public class CitaController implements ICitaControllerService {
         CitaViewController.getInstance().llenarCiudades();
     }
 
+    public List<CitaDto> cargarCitas() {
+        return modelFactoryController.cargarCitas();
+    }
+    @Override
+    public boolean agregarCita(CitaDto citaDto) {
+        return modelFactoryController.agregarCitas(citaDto);
+    }
+
+    @Override
+    public boolean actualizarCita(CitaDto citaDto) {
+        return modelFactoryController.actualizarCita(citaDto);
+    }
+    @Override
+    public boolean eliminarCita(String id){
+        return modelFactoryController.eliminarCita(id);
+    }
 }

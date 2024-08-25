@@ -84,11 +84,8 @@ public class EmpleadoViews {
     }
 
     @FXML
-    void nuevoEmpleadoAction(ActionEvent event) {
-        txtNombre.setText("Ingrese el nombre");
-        txtApellido.setText("Ingrese el apellido");
-        txtCedula.setText("Ingrese la cedula");
-        txtTelefono.setText("Ingrese el telefono");
+    void limpiarEmpleadoAction(ActionEvent event) {
+        limpiarCamposEmpleado();
     }
 
     @FXML

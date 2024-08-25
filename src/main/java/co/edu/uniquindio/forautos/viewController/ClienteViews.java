@@ -154,6 +154,7 @@ public class ClienteViews {
                     tableClients.refresh();
                     mostrarMensaje("Notificación Cliente", "Cliente actualizado", "El Cliente se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                     limpiarCamposCliente();
+                    citaController.obtenerClientes();
                 }else{
                     mostrarMensaje("Notificación Cliente", "Cliente no actualizado", "El Cliente no se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                 }
@@ -180,6 +181,7 @@ public class ClienteViews {
                     clienteDtoSeleccionado = null;
                     tableClients.getSelectionModel().clearSelection();
                     limpiarCamposCliente();
+                    citaController.obtenerClientes();
                     mostrarMensaje("Notificación Cliente", "Cliente eliminado", "El Cliente se ha eliminado con éxito", Alert.AlertType.INFORMATION);
                 }else{
                     mostrarMensaje("Notificación Cliente", "Cliente no eliminado", "El Cliente no se puede eliminar", Alert.AlertType.ERROR);

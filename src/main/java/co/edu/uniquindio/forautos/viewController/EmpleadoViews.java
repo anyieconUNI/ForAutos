@@ -158,6 +158,7 @@ public class EmpleadoViews {
                     tableEmpleado.refresh();
                     mostrarMensaje("Notificación empleado", "Empleado actualizado", "El empleado se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                     limpiarCamposEmpleado();
+                    citaController.obtenerEmpleados();
                 }else{
                     mostrarMensaje("Notificación empleado", "Empleado no actualizado", "El empleado no se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                 }
